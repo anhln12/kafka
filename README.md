@@ -48,6 +48,12 @@ Ví dụ mình muốn lấy message tại vị trí offset như hình trên thì
 * Nhìn vào hình trên ta sẽ thấy:
     * Consumer Group 1 sẽ có độ trễ thấp hơn vì mỗi consumer chỉ subcribe messages từ 1 partition.
     * Consumer Group 2 sẽ có độ trễ cao hơn vì mỗi conusmer phải subcribe messages từ 2 partition.
+    * 
+
+
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --version
+/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --list
+
 
 
 
