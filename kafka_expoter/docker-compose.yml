@@ -12,3 +12,7 @@ services:
     ports:
       - 9308:9308
     restart: always
+
+
+# Grafana Dashboard
+# https://grafana.com/grafana/dashboards/7589-kafka-exporter-overview/
