@@ -1,0 +1,14 @@
+version: '3'
+services:
+  kafka-exporter:
+    image: danielqsj/kafka-exporter
+    command:
+      - --kafka.server=10.39.218.161:9092
+      - --kafka.server=10.39.218.162:9092
+      - --kafka.server=10.39.218.163:9092
+      - --kafka.server=10.39.218.164:9092
+      - --kafka.server=10.39.218.165:9092
+      - --kafka.server=10.39.218.166:9092
+    ports:
+      - 9308:9308
+    restart: always
