@@ -82,10 +82,10 @@ Ví dụ mình muốn lấy message tại vị trí offset như hình trên thì
 - Số lượng node phải lớn hơn hoặc bằng replication factor bạn muốn
 
 7. Kafka đảm bảo không bị mất message như thế nào? có đang tin cậy không?
-Default Kafka lưu tất cả các message được gửi đến khi ổ cứng đầy, hơn nữa với cấu hình replication thì message được lưu các bản copy giúp tránh việc mất dữ liệu. Tuy nhiên Kafka không đảm bảo hoàn toàn việc dữ liệu không bị mất.
+- Default Kafka lưu tất cả các message được gửi đến khi ổ cứng đầy, hơn nữa với cấu hình replication thì message được lưu các bản copy giúp tránh việc mất dữ liệu. Tuy nhiên Kafka không đảm bảo hoàn toàn việc dữ liệu không bị mất.
 
 8. Các message gửi đi Kafka có nhận được theo đúng thứ tự không?
-Kafka lưu giữ message theo các partitions, trong mỗi partition thì message sẽ được gửi đi đúng theo thứ tự, tuy nhiên về toàn cục thì không đảm bảo điều này vì một topic có thể lưu message trong nhiều partitions.
+- Kafka lưu giữ message theo các partitions, trong mỗi partition thì message sẽ được gửi đi đúng theo thứ tự, tuy nhiên về toàn cục thì không đảm bảo điều này vì một topic có thể lưu message trong nhiều partitions.
 
 
 
