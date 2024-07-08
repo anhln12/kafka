@@ -48,12 +48,44 @@ Ví dụ mình muốn lấy message tại vị trí offset như hình trên thì
 * Nhìn vào hình trên ta sẽ thấy:
     * Consumer Group 1 sẽ có độ trễ thấp hơn vì mỗi consumer chỉ subcribe messages từ 1 partition.
     * Consumer Group 2 sẽ có độ trễ cao hơn vì mỗi conusmer phải subcribe messages từ 2 partition.
-    * 
 
 
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --version
 /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --list
 
+
+
+# Những câu hỏi về Kafka
+1. Khi nào thì team/dự án của tôi cần dùng đến Kafka?
+- Khi cần thiết kế một hệ thống publish-subcribe có khả năng mở rộng theo chiều ngang (horizontally scaling)
+- Khi cần một kiến trúc truyền thông điệp thời gian thực hanh, đáng tin cậy và có thể chịu lỗi cao
+
+2. Tôi đã biết một số message broker như AWS SQS, Apache ActiveMQ, hay RabbitMQ. Vậy Kafka có gì khác biệt so với các loại kể trên?
+- Muốn xử lý các message có thời gian tồn tại ngắn thì dùng Redis
+- Với ưu cầu routing phức tạp nhưng lượng message không quá nhiều có thể chọn RabbitMQ
+- Chọn Kafka khi số lượng message là rất lớn và đòi hỏi message được lưu lại
+
+3. Kafka có ưu/nhược điểm gì so với các loại message broker khác?
+- Nhanh, có khả năng mở rộng chiều ngang.
+
+4. Tôi có một ứng dụng nhỏ (chắc chắn không phải là kiến trúc microsevice), có nên dùng Kafka không?
+- Kafka thường chỉ dùng khi cần xây dựng một kiến trúc pub-sub với số lượng message nhiều. Một ứng dụng nhỏ không cần thiết dùng kafka vì sẽ thêm phức tạp và thêm độ trễ xử lý thông tin.
+
+5. Tôi có rất nhiều dữ liệu nặng cần truyền giữa các thành phần trong ứng dụng, nếu dùng Kafka thì có truyền nổi không?
+- Message trong Kafka có kích thước nhỏ, tối đa thường chỉ vài ngàn byte, do vậy không phù hợp để truyền tải dữ liệu kích thước lớn. Thay vào đó có thể xem xét chia nhỏ dữ liệu ra để có thể truyền qua kafka.
+
+6. Chạy Kafka có tốn tài nguyên phần cứng không? Yêu cầu cấu hình server tối thiểu như nào?
+- Có một cluster gồm 3 đến 5 node
+- Ổ ứng của kafka cluster chạy RAID 10
+- Khuyển nghị ram 4G
+- Có đủ dung lượng & băng thông
+- Số lượng node phải lớn hơn hoặc bằng replication factor bạn muốn
+
+7. Kafka đảm bảo không bị mất message như thế nào? có đang tin cậy không?
+Default Kafka lưu tất cả các message được gửi đến khi ổ cứng đầy, hơn nữa với cấu hình replication thì message được lưu các bản copy giúp tránh việc mất dữ liệu. Tuy nhiên Kafka không đảm bảo hoàn toàn việc dữ liệu không bị mất.
+
+8. Các message gửi đi Kafka có nhận được theo đúng thứ tự không?
+Kafka lưu giữ message theo các partitions, trong mỗi partition thì message sẽ được gửi đi đúng theo thứ tự, tuy nhiên về toàn cục thì không đảm bảo điều này vì một topic có thể lưu message trong nhiều partitions.
 
 
 
