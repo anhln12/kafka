@@ -18,9 +18,11 @@ echo "10.30.9.33 kafka3" >> /etc/hosts
 useradd kafka
 ```
 4. Create couple of directories and update & install yum & wget
-		mkdir -p /data/kafka/kafka1.logs /data/kafka/kafka2.logs /data/kafka/kafka3.logs
-		mkdir -p /opt/kafka
-		chown -R kafka:kafka data opt
+```
+mkdir -p /data/kafka/kafka1.logs /data/kafka/kafka2.logs /data/kafka/kafka3.logs
+mkdir -p /opt/kafka
+chown -R kafka:kafka data opt
+```
 4. Download kafka (3.4.0, kraft) and untar - reference https://kafka.apache.org/quickstart
 	cd /opt/kafka
 	sudo wget https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz or 
