@@ -5,12 +5,18 @@
 		yum install -y wget curl java 
 2. AWS EC2 Instances(RHEL): add into /etc/hosts file and ping the hosts from one box to other, it should communicate each other.
 ```
-		10.20.2.217 kafka1
-		10.20.3.33 kafka2
-		10.20.4.46 kafka3
+10.30.9.31 kafka1
+10.30.9.32 kafka2
+10.30.9.33 kafka3
+
+echo "10.30.9.31 kafka1" >> /etc/hosts
+echo "10.30.9.32 kafka2" >> /etc/hosts
+echo "10.30.9.33 kafka3" >> /etc/hosts
 ```
-3. Create a user "kafka" 
-		useradd kafka
+3. Create a user "kafka"
+```
+useradd kafka
+```
 4. Create couple of directories and update & install yum & wget
 		mkdir -p /data/kafka/kafka1.logs /data/kafka/kafka2.logs /data/kafka/kafka3.logs
 		mkdir -p /opt/kafka
