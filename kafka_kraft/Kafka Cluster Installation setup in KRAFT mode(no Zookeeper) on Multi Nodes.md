@@ -24,17 +24,20 @@ mkdir -p /opt/kafka
 chown -R kafka:kafka data opt
 ```
 4. Download kafka (3.4.0, kraft) and untar - reference https://kafka.apache.org/quickstart
-	cd /opt/kafka
-	sudo wget https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz or 
-	curl -O https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz
-	tar -xzf kafka_2.13-3.4.0.tgz
+```
+cd /opt/kafka
+sudo wget https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz or 
+curl -O https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz
+tar -xzf kafka_2.13-3.4.0.tgz
+```
 5. Actual fun begins here,...at "server.properties" file ** key is kraft folder
-	cd /opt/kafka/config/kraft
-	do below changes in "server.properties" on each box 
-	5.1 process.roles=broker,controller --> its optional change by default both roles 
-	5.2 node.id=1 (node.id=2,node.id=3,...node.id=n based on N no.of nodes on respective node)
-	5.3 controller.quorum.voters=1@kafka1:9093,2@kafka2:9093,3@kafka3:9093 (list of voters to elect leader)
-	5.4 listeners=PLAINTEXT://kafka1:9092,CONTROLLER://kafka1:9093 -->kafka1 box
+```
+cd /opt/kafka/config/kraft
+do below changes in "server.properties" on each box 
+5.1 process.roles=broker,controller --> its optional change by default both roles 
+5.2 node.id=1 (node.id=2,node.id=3,...node.id=n based on N no.of nodes on respective node)
+5.3 controller.quorum.voters=1@kafka1:9093,2@kafka2:9093,3@kafka3:9093 (list of voters to elect leader)
+5.4 listeners=PLAINTEXT://kafka1:9092,CONTROLLER://kafka1:9093 -->kafka1 box
 		listeners=PLAINTEXT://kafka2:9092,CONTROLLER://kafka2:9093 -->kafka2 box
 		listeners=PLAINTEXT://kafka3:9092,CONTROLLER://kafka2:9093 -->kafka3 box
 	5.5	advertised.listeners=PLAINTEXT://kafka1:9092  -->kafka1 box
