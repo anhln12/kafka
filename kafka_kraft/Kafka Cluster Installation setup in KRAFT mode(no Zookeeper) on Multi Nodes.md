@@ -1,9 +1,10 @@
 ********Kafka Cluster multi different node install/setup (in Kraft mode, no zookeeper)*********Kafka V3.4.0======
-1. Login (ssh) to each box update & install yum & wget
-		login to jump box or connect to machines that you have access directly
-		yum update -y
-		yum install -y wget curl java 
-2. AWS EC2 Instances(RHEL): add into /etc/hosts file and ping the hosts from one box to other, it should communicate each other.
+1. Login (ssh) to each box update & install yum & wget login to jump box or connect to machines that you have access directly
+```
+yum update -y
+yum install -y wget curl java
+``` 
+3. AWS EC2 Instances(RHEL): add into /etc/hosts file and ping the hosts from one box to other, it should communicate each other.
 ```
 10.30.9.31 kafka1
 10.30.9.32 kafka2
