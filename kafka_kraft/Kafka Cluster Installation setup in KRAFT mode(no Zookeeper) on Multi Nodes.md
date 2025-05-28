@@ -116,17 +116,17 @@ WantedBy=multi-user.target
 EOF
 ```
 
-10. make sure file permissions and load "sudo systemctl daemon-reload" and try "sudo systemctl start kafka" and  "sudo systemctl stop kafka"
-
-
-
+10. make sure file permissions and load
+```
+systemctl enable kafka.service --> To enbale service to pick-up on reboot
 sudo systemctl daemon-reload
 sudo systemctl start kafka
-systemctl status kafka
 sudo systemctl stop kafka
-systemctl status kafka
-systemctl enable kafka.service --> To enbale service to pick-up on reboot [op/:Created symlink /etc/systemd/system/multi-user.target.wants/kafka.service → /etc/systemd/system/kafka.service.]
-11. Few Samples:
+sudo systemctl status kafka
+```
+
+
+1. Few Samples:
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --version
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --list
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --create --topic testsj
