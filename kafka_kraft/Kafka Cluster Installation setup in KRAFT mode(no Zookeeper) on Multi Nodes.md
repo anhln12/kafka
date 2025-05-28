@@ -1,4 +1,5 @@
 ********Kafka Cluster multi different node install/setup (in Kraft mode, no zookeeper)*********Kafka V3.4.0======
+
 1. Login (ssh) to each box update & install yum & wget login to jump box or connect to machines that you have access directly
 ```
 yum update -y
@@ -62,13 +63,13 @@ or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw" => chạy trên 
 ```
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 ```
-9. Start the Kafka Server
+9. Start the Kafka Server => Bỏ qua thực hiện từ bước 10
 ```
 1. /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties -->interactive mode
 2. /opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/kraft/server.properties -->backend mode
 3. Adding service mode, to start & stop on reboot or failure/down automatically - no manual intervention
 ```
-11. (8.3) Adding Kafka service daemon process, Add below content to the kafka.service file
+10. Adding Kafka service daemon process, Add below content to the kafka.service file
 ```
 cat << EOF > /etc/systemd/system/kafka.service
 [Unit]
@@ -116,10 +117,10 @@ WantedBy=multi-user.target
 EOF
 ```
 
-10. make sure file permissions and load
+11. make sure file permissions and load
 ```
-systemctl enable kafka.service --> To enbale service to pick-up on reboot
 sudo systemctl daemon-reload
+systemctl enable kafka.service --> To enbale service to pick-up on reboot
 sudo systemctl start kafka
 sudo systemctl stop kafka
 sudo systemctl status kafka
@@ -127,7 +128,9 @@ sudo systemctl status kafka
 
 
 1. Few Samples:
+```
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --version
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --list
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --create --topic testsj
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --create --topic testsj-r3p10 --partitions 10 --replication-factor 3
+```
