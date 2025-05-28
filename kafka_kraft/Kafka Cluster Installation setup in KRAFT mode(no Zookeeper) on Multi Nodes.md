@@ -55,7 +55,8 @@ log.dirs=/data/kafka/kafka3.logs  -->Kafka3 box
 ```
 KAFKA_CLUSTER_ID="$(/opt/kafka/bin/kafka-storage.sh random-uuid)" --> any box
 and set/export same echo $KAFKA_CLUSTER_ID in other boxes
-export KAFKA_CLUSTER_ID=`echo $KAFKA_CLUSTER_ID` (backquote `, not single ' or double ") or copy & past xport KAFKA_CLUSTER_ID="......."
+export KAFKA_CLUSTER_ID=`echo $KAFKA_CLUSTER_ID` (backquote `, not single ' or double ") 
+or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw"
 ```
 7. Format Log Directories
 	/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
