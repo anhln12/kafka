@@ -62,15 +62,15 @@ or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw" => chạy trên 
 ```
 /opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
 ```
-9. Start the Kafka Server 
-	1. /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties -->interactive mode
-	2. /opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/kraft/server.properties -->backend mode
-	3. Adding service mode, to start & stop on reboot or failure/down automatically - no manual intervention
-
-10. (8.3) Adding Kafka service daemon process, Add below content to the kafka.service file
-	cd /etc/systemd/system
-	sudo vi kafka.service
-[subbuj@ip-10-20-2-216 system]$ cat kafka.service
+9. Start the Kafka Server
+```
+1. /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties -->interactive mode
+2. /opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/kraft/server.properties -->backend mode
+3. Adding service mode, to start & stop on reboot or failure/down automatically - no manual intervention
+```
+11. (8.3) Adding Kafka service daemon process, Add below content to the kafka.service file
+```
+cat << EOF > /etc/systemd/system/kafka.service
 [Unit]
 Description=kafka Service
 After=network-online.target
@@ -90,8 +90,36 @@ WorkingDirectory=/opt/kafka
 
 [Install]
 WantedBy=multi-user.target
+EOF
+
+
+cat << EOF > /etc/systemd/system/kafka.service
+[Unit]
+Description=kafka Service
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+
+Type=simple
+Restart=on-failure
+
+User=kafka
+Group=kafka
+
+ExecStart=/database/kafka/kafka_2.12-3.9.0/bin/kafka-server-start.sh /database/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
+ExecStop=/database/kafka/kafka_2.12-3.9.0/bin/kafka-server-stop.sh /database/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
+WorkingDirectory=/database/kafka/kafka_2.12-3.9.0
+
+[Install]
+WantedBy=multi-user.target
+
+
 10. make sure file permissions and load "sudo systemctl daemon-reload" and try "sudo systemctl start kafka" and  "sudo systemctl stop kafka"
--rw-r--r--. 1 root root  403 Apr 20 18:11 kafka.service
+
+EOF
+```
+
 sudo systemctl daemon-reload
 sudo systemctl start kafka
 systemctl status kafka
