@@ -59,14 +59,15 @@ export KAFKA_CLUSTER_ID=`echo $KAFKA_CLUSTER_ID` (backquote `, not single ' or d
 or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw" => chạy trên 2 node còn lại
 ```
 7. Format Log Directories
-	/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
-
-8. Start the Kafka Server 
+```
+/opt/kafka/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
+```
+9. Start the Kafka Server 
 	1. /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties -->interactive mode
 	2. /opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/kraft/server.properties -->backend mode
 	3. Adding service mode, to start & stop on reboot or failure/down automatically - no manual intervention
 
-9. (8.3) Adding Kafka service daemon process, Add below content to the kafka.service file
+10. (8.3) Adding Kafka service daemon process, Add below content to the kafka.service file
 	cd /etc/systemd/system
 	sudo vi kafka.service
 [subbuj@ip-10-20-2-216 system]$ cat kafka.service
