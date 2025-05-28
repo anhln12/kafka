@@ -113,12 +113,12 @@ WorkingDirectory=/opt/kafka/kafka_2.12-3.9.0
 
 [Install]
 WantedBy=multi-user.target
-
+EOF
+```
 
 10. make sure file permissions and load "sudo systemctl daemon-reload" and try "sudo systemctl start kafka" and  "sudo systemctl stop kafka"
 
-EOF
-```
+
 
 sudo systemctl daemon-reload
 sudo systemctl start kafka
