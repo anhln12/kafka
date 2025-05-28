@@ -107,9 +107,9 @@ Restart=on-failure
 User=kafka
 Group=kafka
 
-ExecStart=/database/kafka/kafka_2.12-3.9.0/bin/kafka-server-start.sh /database/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
-ExecStop=/database/kafka/kafka_2.12-3.9.0/bin/kafka-server-stop.sh /database/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
-WorkingDirectory=/database/kafka/kafka_2.12-3.9.0
+ExecStart=/opt/kafka/kafka_2.12-3.9.0/bin/kafka-server-start.sh /opt/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
+ExecStop=/opt/kafka/kafka_2.12-3.9.0/bin/kafka-server-stop.sh /opt/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
+WorkingDirectory=/opt/kafka/kafka_2.12-3.9.0
 
 [Install]
 WantedBy=multi-user.target
