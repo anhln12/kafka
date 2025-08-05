@@ -133,4 +133,6 @@ sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,k
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --list
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --create --topic testsj
 sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --create --topic testsj-r3p10 --partitions 10 --replication-factor 3
+root@dc-prod-devops-kafka02:/opt/kafka/kafka_2.12-3.9.0/bin# ./kafka-console-consumer.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --topic devops-service --from-beginning => comsumer cli
+
 ```
