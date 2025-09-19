@@ -65,3 +65,27 @@ services:
       - "kafka3:10.30.9.33"
 
 ```
+
+Thêm volumn
+```
+version: '3.3'
+
+services:
+  kafka-ui:
+    ports:
+      - "8083:8080"
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+      - AUTH_TYPE=LOGIN_FORM
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin
+      - SERVER_SERVLET_CONTEXT_PATH=/kafka-ui
+    image: provectuslabs/kafka-ui
+    volumes:
+      - /opt/kafka-ui:/logs
+    extra_hosts:
+      - "kafka1:10.0.12.134"
+      - "kafka2:10.0.12.135"
+      - "kafka3:10.0.12.136"
+      - "kafka4:10.0.12.137"
+```
