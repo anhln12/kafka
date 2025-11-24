@@ -64,7 +64,7 @@ or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw" => chạy trên 
 ```
 7. Format Log Directories
 ```
-/opt/kafka/kafka_2.12-3.9.0/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/config/kraft/server.properties
+/opt/kafka/kafka_2.12-3.9.0/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c /opt/kafka/kafka_2.12-3.9.0/config/kraft/server.properties
 ```
 9. Start the Kafka Server => Bỏ qua thực hiện từ bước 10
 ```
