@@ -34,8 +34,9 @@ wget https://dlcdn.apache.org/kafka/3.9.0/kafka_2.12-3.9.0.tgz
 tar -xzf kafka_2.12-3.9.0.tgz
 ```
 5. Actual fun begins here,...at "server.properties" file ** key is kraft folder
-
+```
 cd /opt/kafka/kafka_2.12-3.9.0/config/kraft
+```
 do below changes in "server.properties" on each box 
 ```
 5.1 process.roles=broker,controller --> its optional change by default both roles => trên các node
