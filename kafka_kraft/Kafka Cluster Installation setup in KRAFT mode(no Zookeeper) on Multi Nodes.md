@@ -4,6 +4,8 @@
 ```
 yum update -y
 yum install -y wget curl java
+
+apt install -y wget curl openjdk-21-jdk
 ``` 
 3. AWS EC2 Instances(RHEL): add into /etc/hosts file and ping the hosts from one box to other, it should communicate each other.
 ```
