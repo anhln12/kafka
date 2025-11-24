@@ -57,7 +57,7 @@ log.dirs=/opt/kafka/kafka3.logs  -->Kafka3 box
 ```
 6. Generate a Cluster UUID in anyone of the box, and make sure rest of other boxes must have same cluster ID by export
 ```
-KAFKA_CLUSTER_ID="$(/opt/kafka/bin/kafka-storage.sh random-uuid)" --> any box
+KAFKA_CLUSTER_ID="$(/opt/kafka/kafka_2.12-3.9.0/bin/kafka-storage.sh random-uuid)" --> any box
 and set/export same echo $KAFKA_CLUSTER_ID in other boxes
 export KAFKA_CLUSTER_ID=`echo $KAFKA_CLUSTER_ID` (backquote `, not single ' or double ") 
 or copy & past export KAFKA_CLUSTER_ID="bV7J9kM5Q8eroI4E_FtpSw" => chạy trên 2 node còn lại
