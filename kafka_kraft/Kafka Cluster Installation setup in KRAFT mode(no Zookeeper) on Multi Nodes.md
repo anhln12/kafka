@@ -32,6 +32,7 @@ chown -R kafka:kafka data opt
 cd /opt/kafka
 wget https://dlcdn.apache.org/kafka/3.9.0/kafka_2.12-3.9.0.tgz
 tar -xzf kafka_2.12-3.9.0.tgz
+chown kafka. -R /opt/kafka
 ```
 5. Actual fun begins here,...at "server.properties" file ** key is kraft folder
 ```
@@ -127,6 +128,7 @@ systemctl enable kafka.service --> To enbale service to pick-up on reboot
 sudo systemctl start kafka
 sudo systemctl stop kafka
 sudo systemctl status kafka
+journalctl -u kafka -n 50 --no-pager # check logs
 ```
 
 
