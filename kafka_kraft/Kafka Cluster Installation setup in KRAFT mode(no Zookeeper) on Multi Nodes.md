@@ -51,9 +51,9 @@ advertised.listeners=PLAINTEXT://kafka1:9092  -->kafka1 box
 advertised.listeners=PLAINTEXT://kafka2:9092  -->kafka2 box
 advertised.listeners=PLAINTEXT://kafka3:9092  -->kafka3 box
 5.6 log.dirs
-log.dirs=/data/kafka/kafka1.logs  -->Kafka1 box
-log.dirs=/data/kafka/kafka2.logs  -->Kafka2 box
-log.dirs=/data/kafka/kafka3.logs  -->Kafka3 box
+log.dirs=/opt/kafka/kafka1.logs  -->Kafka1 box
+log.dirs=/opt/kafka/kafka2.logs  -->Kafka2 box
+log.dirs=/opt/kafka/kafka3.logs  -->Kafka3 box
 ```
 6. Generate a Cluster UUID in anyone of the box, and make sure rest of other boxes must have same cluster ID by export
 ```
