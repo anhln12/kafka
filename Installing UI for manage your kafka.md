@@ -89,3 +89,38 @@ services:
       - "kafka3:10.0.12.136"
       - "kafka4:10.0.12.137"
 ```
+
+Nginx
+```
+server {
+    if ($host = edu-monitor.xxx.vn) {
+        return 301 https://$host$request_uri;
+    } 
+
+
+    listen 80;
+    server_name edu-monitor.xxx.vn;
+    return 404; # managed by Certbot
+}
+
+server {
+  listen 443 ssl;
+  server_name edu-monitor.xxx.vn;
+  ssl_certificate /etc/nginx/ssl/xxx/xxx.cer; 
+  ssl_certificate_key /etc/nginx/ssl/xxx/private.key;
+  ssl_protocols TLSv1.2 TLSv1.3;
+  access_log  /opt/nginx/logs/edu-monitor_access.log;
+  error_log  /opt/nginx/logs/edu-monitor_error.log;
+
+  location /kafka-ui {
+    proxy_pass http://xxx:8083;
+    proxy_set_header   Host $host;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-Host $host;
+    proxy_set_header   X-Forwarded-For $remote_addr;
+  }
+}
+```
