@@ -20,6 +20,14 @@ echo "10.30.9.33 kafka3" >> /etc/hosts
 3. Create a user "kafka"
 ```
 useradd kafka
+
+useradd -r -M -s /sbin/nologin kafka
+
+Giải thích:
+
+-r: tạo system account.
+-M: không tạo thư mục home.
+-s /sbin/nologin: không cho phép đăng nhập shell.
 ```
 4. Create couple of directories and update & install yum & wget
 ```
