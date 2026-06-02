@@ -41,6 +41,7 @@ cd /opt/kafka
 wget https://dlcdn.apache.org/kafka/3.9.0/kafka_2.12-3.9.0.tgz
 wget https://dlcdn.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz
 tar -xzf kafka_2.12-3.9.0.tgz
+tar -xzf kafka_2.13-3.9.2.tgz
 chown kafka. -R /opt/kafka
 ```
 5. Actual fun begins here,...at "server.properties" file ** key is kraft folder
