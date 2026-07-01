@@ -66,6 +66,31 @@ log.dirs=/opt/kafka/kafka1.logs  -->Kafka1 box
 log.dirs=/opt/kafka/kafka2.logs  -->Kafka2 box
 log.dirs=/opt/kafka/kafka3.logs  -->Kafka3 box
 ```
+
+
+############################# Internal Topic Settings  ############################# (Default)
+# The replication factor for the group metadata internal topics "__consumer_offsets", "__share_group_state" and "__transaction_state"
+# For anything other than development testing, a value greater than 1 is recommended to ensure availability such as 3.
+offsets.topic.replication.factor=1
+share.coordinator.state.topic.replication.factor=1
+share.coordinator.state.topic.min.isr=1
+transaction.state.log.replication.factor=1
+transaction.state.log.min.isr=1
+
+=> Config lại
+# Số bản sao lưu cho các topic hệ thống (Khuyên dùng là 3 trên cụm 3 Node)
+offsets.topic.replication.factor=3
+transaction.state.log.replication.factor=3
+
+# Tính năng Share Group mới từ các bản Kafka gần đây (Bản sao lưu trạng thái)
+share.coordinator.state.topic.replication.factor=3
+
+# Số lượng bản sao tối thiểu phải xác nhận ghi thành công (Min In-Sync Replicas)
+# Công thức chuẩn: ISR = (Replication Factor / 2) + 1. Đặt bằng 2 để đảm bảo an toàn dữ liệu.
+transaction.state.log.min.isr=2
+share.coordinator.state.topic.min.isr=2
+
+
 6. Generate a Cluster UUID in anyone of the box, and make sure rest of other boxes must have same cluster ID by export
 ```
 KAFKA_CLUSTER_ID="$(/opt/kafka/kafka_2.12-3.9.0/bin/kafka-storage.sh random-uuid)" --> any box
