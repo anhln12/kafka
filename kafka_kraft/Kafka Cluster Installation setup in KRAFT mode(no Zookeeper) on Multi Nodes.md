@@ -65,7 +65,7 @@ advertised.listeners=PLAINTEXT://kafka3:9092  -->kafka3 box
 log.dirs=/opt/kafka/kafka1.logs  -->Kafka1 box
 log.dirs=/opt/kafka/kafka2.logs  -->Kafka2 box
 log.dirs=/opt/kafka/kafka3.logs  -->Kafka3 box
-```
+
 
 
 ############################# Internal Topic Settings  ############################# (Default)
@@ -89,7 +89,7 @@ share.coordinator.state.topic.replication.factor=3
 # Công thức chuẩn: ISR = (Replication Factor / 2) + 1. Đặt bằng 2 để đảm bảo an toàn dữ liệu.
 transaction.state.log.min.isr=2
 share.coordinator.state.topic.min.isr=2
-
+```
 
 6. Generate a Cluster UUID in anyone of the box, and make sure rest of other boxes must have same cluster ID by export
 ```
